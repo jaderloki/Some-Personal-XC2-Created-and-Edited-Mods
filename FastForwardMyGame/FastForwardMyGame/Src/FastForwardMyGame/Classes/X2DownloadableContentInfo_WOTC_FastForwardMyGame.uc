@@ -37,7 +37,7 @@ static event OnExitPostMissionSequence()
 	//ligar();
 }
 
-static simulated function ligar(){
+static function ligar(){
 	local UIOptionsPCScreen.EUI_PCOptions_Tabs gaficos;
 
 	`LOG("LIGAR coisaDoida INICIO");
@@ -56,23 +56,21 @@ static simulated function ligar(){
 		`PRESBASE.m_kPCOptions.bGraphicsAutoDetectInProgress = true;
 		//`PRESBASE.m_kPCOptions.Hide();
 		//`PRESBASE.m_kPCOptions.NavHelp.Hide();
-		`XENGINE.RunGPUAutoDetect(true, ligarPOST);
-		`PRESBASE.m_kPCOptions.GPUAutoDetectFinished();
-		//`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
-		`PRESBASE.m_kPCOptions.SaveAndExitFinal();
-		//`PRESBASE.m_kPCOptions.ExitScreen();
-		//`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
+		`XENGINE.RunGPUAutoDetect(true, `PRESBASE.m_kPCOptions.GPUAutoDetectFinished);
+		
 	}
 }
 
-static simulated function ligarPOST(){
-	if(`PRESBASE != none){
-		
-	}
+static function ligarPOST(){
+	`PRESBASE.m_kPCOptions.GPUAutoDetectFinished();
+	//`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
+	`PRESBASE.m_kPCOptions.SaveAndExitFinal();
+	//`PRESBASE.m_kPCOptions.ExitScreen();
+	//`PRESBASE.ScreenStack.Pop(`PRESBASE.m_kPCOptions);
 	`LOG("LIGAR coisaDoida FIM - CHAMAR PARA FINALIZAR");
 }
 
-static simulated function closeGraficos(){
+static function closeGraficos(){
 	if(`PRESBASE != none){
 		`PRESBASE.m_kPCOptions.SaveAndExitFinal();
 		`PRESBASE.m_kPCOptions.ExitScreen();
@@ -80,7 +78,7 @@ static simulated function closeGraficos(){
 	`LOG("FINALIZADO GRAFICOS");
 }
 
-static simulated function desligar(){
+static function desligar(){
 	local UIOptionsPCScreen.EUI_PCOptions_Tabs gaficos;
 	local UIOptionsPCScreen.EUI_PCOptions_GraphicsSettings gaficosSetingus;
 	local UIOptionsPCScreen.EUI_PCOptions_Graphics gaficosOptinus_Preset                ;
@@ -170,15 +168,15 @@ static simulated function desligar(){
 	}
 }
 
-exec simulated function jaderLigar(){
+exec function jaderLigar(){
 	ligar();
 }
 
-exec simulated function jaderDesligar(){
-	desligar();
+exec function jaderDesligar(){
+	`PRESBASE.ScreenStack.Pop(`PRESBASE.m_kPCOptions);
 }
 
-exec simulated function buceta(){
+exec function buceta(){
 	if(`PRESBASE != none){
 		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
