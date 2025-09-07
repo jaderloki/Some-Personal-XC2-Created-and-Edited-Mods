@@ -44,8 +44,8 @@ static simulated function ligar(){
 	if(`PRESBASE != none){
 		gaficos = ePCTab_Graphics;
 
+		//`PRESBASE.Init();
 		if(`PRESBASE.IsPCOptionsRaised() != true){
-			`PRESBASE.Init();
 			`PRESBASE.InitUIScreens();
 			`PRESBASE.UIPCOptions(true);
 		}
@@ -119,8 +119,8 @@ static simulated function desligar(){
 		gaficosOptinus_ScreenSpaceReflections            = ePCGraphics_ScreenSpaceReflections;
 		gaficosOptinus_MaxDrawDistance                   = ePCGraphics_MaxDrawDistance;
 
+		//`PRESBASE.Init();
 		if(`PRESBASE.IsPCOptionsRaised() != true){
-			`PRESBASE.Init();
 			`PRESBASE.InitUIScreens();
 			`PRESBASE.UIPCOptions(true);
 		}
