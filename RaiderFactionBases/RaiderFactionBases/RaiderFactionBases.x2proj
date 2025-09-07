@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>d958193a-ff7d-4c26-9093-37fec70b1891</Guid>
+    <Name>RaiderFactionBases</Name>
+    <Description>RaiderFactionBases</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>RaiderFactionBases</AssemblyName>
+    <RootNamespace>RaiderFactionBases</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Config\Bandit\XComEncounters.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\Cultists\XComEncounters.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\Marauder\XComEncounters.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\Phantoms\XComEncounters.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\RogueXCom\XComEncounters.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEncounters.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameBoard.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComMissionDefs.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComMissions.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComMIssionSources.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComRaiderBases.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComSchedules.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\CovertOpObjectives.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Obj_CovertOp_BaseTakedown.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Obj_CovertOp_DataEscape_V2.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Obj_CovertOp_Datamine.umap">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\RaiderFactionBases_ModShaderCache.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\RaiderFactionBases.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_CallRaiderReinforcements.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_GetAllCovertOps.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_GetAllRaiderUnits.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_GetCovertOp.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_IsUnitCovertOp.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_SetRaiderPriority.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_WarpUnitsUsingLocation.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\SeqAct_WarpUnitUsingLocation.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\UIMission_RaiderAmbush.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\UIStrategyMapItem_RaiderBase.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2Ability_CovertOp.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2DownloadableContentInfo_RaiderFactionBases.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2EventListener_CovertOps.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2EventListener_RaiderBase.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2Helpers_RM_RaiderBases.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2Item_RaiderBaseItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2MissionNarrative_RFB.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2MissionSet_RFB.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2SitrepEffects_CovertOp.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2StrategyElement_RaiderCovertActionRisks.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2StrategyElement_RaiderCovertActions.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2StrategyElement_RaiderRewards.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\X2StrategyElement_RM_CovertOpMissionSources.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\XComGameState_MissionSiteRaiderAmbush.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\XComGameState_RaiderBase.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\RaiderFactionBases\Classes\XComGameState_RaiderBaseManager.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config" />
+    <Folder Include="Config\Bandit" />
+    <Folder Include="Config\Cultists" />
+    <Folder Include="Config\Marauder" />
+    <Folder Include="Config\RogueXCom" />
+    <Folder Include="Config\Phantoms" />
+    <Folder Include="Content" />
+    <Folder Include="Localization" />
+    <Folder Include="Src" />
+    <Folder Include="Src\RaiderFactionBases" />
+    <Folder Include="Src\RaiderFactionBases\Classes" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>

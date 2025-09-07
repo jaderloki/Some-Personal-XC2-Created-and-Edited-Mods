@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>a01a0976-fb53-4ee5-a604-1435b533a564</Guid>
+    <Name>WOTC_GotchaAgainRedux</Name>
+    <Description>WOTC_GotchaAgainRedux</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>WOTC_GotchaAgainRedux</AssemblyName>
+    <RootNamespace>WOTC_GotchaAgainRedux</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComWOTCGotchaAgainReduxDefaults.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\UILibrary_GA.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\UILibrary_GA_vhs2.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\WOTC_GotchaAgainRedux_ModShaderCache.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\WOTC_GotchaAgainRedux.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\WOTC_GotchaAgainRedux.rus">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Button.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Checkbox.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Dropdown.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Instance.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Label.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Setting.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_SettingsGroup.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_SettingsPage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Slider.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_API_Spinner.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\Classes\MCM_OptionsScreen.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\MCM_API_CfgHelpers.uci">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\ModConfigMenuAPI\MCM_API_Includes.uci">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\CacheUtility_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\DoorHackingIndicator_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\IconPack_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\IconPack_GA_vhs2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\LOSUtility_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\MCM_GotchaAgainRedux_Defaults.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\MCM_GotchaAgainRedux_Settings.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\MCM_GotchaAgainRedux_UISL.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\ObjectiveIndicatorUtility_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\PathIndicatorLocation_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\PathIndicatorUtility_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\PathIndicator_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\PeekConcealmentRules.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\PeekFixUtility.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\UISL_PeekTacticalHUD.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\UISpecialMissionHUD_Arrows_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\UIUnitActivationIndicator_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\UIUnitFlagManager_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\UIUnitLOSIndicator_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\UnitIndicatorUtility_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\X2DownloadableContentInfo_WOTC_GotchaAgainRedux.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\X2GrapplePuck_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\X2MeleePathingPawn_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\XComGameState_IndicatorArrow_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\XComPathingPawn_GA.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WOTC_GotchaAgainRedux\Classes\XComTacticalController_MCP.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XComGame\Classes\XComShellNigga.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config" />
+    <Folder Include="Content" />
+    <Folder Include="Localization" />
+    <Folder Include="Src" />
+    <Folder Include="Src\ModConfigMenuAPI" />
+    <Folder Include="Src\ModConfigMenuAPI\Classes" />
+    <Folder Include="Src\XComGame" />
+    <Folder Include="Src\WOTC_GotchaAgainRedux" />
+    <Folder Include="Src\WOTC_GotchaAgainRedux\Classes" />
+    <Folder Include="Src\XComGame\Classes" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>

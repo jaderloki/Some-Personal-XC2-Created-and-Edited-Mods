@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>4e70a3df-4209-4431-bf38-d3695f84233d</Guid>
+    <Name>AHarderWarChosenPack</Name>
+    <Description>AHarderWarChosenPack</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>AHarderWarChosenPack</AssemblyName>
+    <RootNamespace>AHarderWarChosenPack</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Config\ChosenAssassin\XComAI.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\ChosenAssassin\XComGameData_CharacterStats.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\ChosenGeneric\XComAI.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\ChosenHunter\XComAI.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\ChosenHunter\XComGameData_CharacterStats.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\ChosenWarlock\XComAI.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\ChosenWarlock\XComGameData_CharacterStats.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComAHWChosenPack_Configuration.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData_SoldierSkills.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData_WeaponData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\AHarderWarChosenPack_ModShaderCache.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\AHarderWar_Animation_ChosenPsionics.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\AHarderWar_GameUnit_ChosenWarlock.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="Src\AHarderWarChosenPack\Classes\AHarderWar_Abilities_ChosenAssassin.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\AHarderWarChosenPack\Classes\AHarderWar_Abilities_ChosenSniper.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\AHarderWarChosenPack\Classes\AHarderWar_Abilities_ChosenWarlock.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\AHarderWarChosenPack\Classes\AHarderWar_Grenades_ChosenPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\AHarderWarChosenPack\Classes\AHarderWar_Weapons_ChosenAssassin.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\AHarderWarChosenPack\Classes\AHarderWar_Weapons_ChosenHunter.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\AHarderWarChosenPack\Classes\AHarderWar_Weapons_ChosenWarlock.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\AHarderWarChosenPack\Classes\X2DownloadableContentInfo_AHarderWarChosenPack.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config" />
+    <Folder Include="Config\ChosenWarlock" />
+    <Folder Include="Config\ChosenHunter" />
+    <Folder Include="Config\ChosenGeneric" />
+    <Folder Include="Config\ChosenAssassin" />
+    <Folder Include="Content" />
+    <Folder Include="Localization" />
+    <Folder Include="Src" />
+    <Folder Include="Src\AHarderWarChosenPack" />
+    <Folder Include="Src\AHarderWarChosenPack\Classes" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>

@@ -1,0 +1,41 @@
+[UIStrategyMapItem_RaiderBase]
+MapPin_Header="HQ"
+MapPin_Tooltip=""
+
+
+[UIMission_RaiderAmbush]
+m_strFlavorText="The planned covert operation is going off now Commander, our covert operative needs Strike-One now!"
+m_strLaunchMission="LAUNCH"
+m_strIgnore="CAN NOT IGNORE"
+m_strMissionSubtitle="Raider Ambush"
+
+[X2StrategyElement_RaiderRewards]
+m_strDiscoveryText="Locate <XGParam:StrValue0/!BaseName/>"
+m_strActionText="Destroy <XGParam:StrValue0/!BaseName/>"
+
+[Reward_RaiderBaseAction X2RewardTemplate]
+DisplayName="Destroy Raider Base"
+RewardDetails="Raid the raider faction base on this continent, preventing them from frequently appearing on missions here."
+
+[Reward_DiscoverRaiderBase X2RewardTemplate]
+DisplayName="Locate Raider Base"
+RewardDetails="Find the raider faction base on this continent, as a prelude to destroying their base of operations."
+
+[CovertActionNarrative_FindRaiderBase X2CovertActionNarrativeTemplate]
+ActionName="Finding Raiders"
+ActionPreNarrative="Intelligence indicates there's a raider base in <XGParam:StrValue3/!ContinentName/>. They'll be a constant problem with missions in the continent, a problem we may be able to resolve if we can find the exact coordinates of their base."
+ActionPostNarrative="We've found out where their HQ is: now we just need to time to plan in a destruction operation for it."
+
+[CovertActionNarrative_RaiderBaseAction X2CovertActionNarrativeTemplate]
+ActionName="Wrecking Raiders"
+ActionPreNarrative="For whatever reason, ADVENT has been tactily defending the raiders in <XGParam:StrValue3/!ContinentName/> from any major operation from us - until now. This may be our one shot at hindering their efforts once and for all."
+ActionPostNarrative="They'll still have personnel out there in the world, but they should be much less of a problem now."
+
+[CovertActionNarrative_RaiderDataRetrieval X2CovertActionNarrativeTemplate]
+ActionName="Covert Op: Data Retrieval"
+ActionPreNarrative="We have reason to believe that raiders operating in <XGParam:StrValue3/!ContinentName/> have recently stolen major ADVENT intel: if we send in an operative on a covert op, we can try snagging that intel for ourselves."
+ActionPostNarrative="The operation was a success: now we have a much wider look at how ADVENT has been operating recently."
+
+
+[X2Item_RaiderBaseItems]
+m_strMaterielReward="Got extra <XGParam:StrValue0/!materiel/> from the raider outpost!"

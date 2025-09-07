@@ -1,0 +1,26 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//	GOTCHA AGAIN REDUX BY RUSTYDIOS AND OTHERS
+//  CREATED SOMETIME BEFORE 04/09/17
+//  LAST UPDATED    10/07/23    02:00
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class PathIndicatorLocation_GA extends Object;
+
+var int PathTileIndex;
+var TTile Tile;
+var PathIndicator_GA PathIndicator;
+var EWaypointUpdateMode WaypointUpdateMode;
+var array<EIndicatorType> IndicatorTypes;
+var array<int> TriggeredOverwatchObjectIDs, TriggeredActivationObjectIDs;
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//	ADD NEW INDICATOR WAYPOINT
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public function AddIndicatorToLocation(EIndicatorType Indicator)
+{
+    if(IndicatorTypes.Find(Indicator) == INDEX_NONE)
+    {
+        IndicatorTypes.AddItem(Indicator);
+    }
+}

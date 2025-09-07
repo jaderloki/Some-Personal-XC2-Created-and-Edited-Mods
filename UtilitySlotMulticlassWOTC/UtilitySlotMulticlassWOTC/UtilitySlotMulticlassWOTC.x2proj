@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>bef7cf1c-199f-475e-83af-77cd45fcf570</Guid>
+    <Name>UtilitySlotMulticlassWOTC</Name>
+    <Description>Description of My XCOM 2 Mod.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>UtilitySlotMulticlassWOTC</AssemblyName>
+    <RootNamespace>UtilitySlotMulticlassWOTC</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComUtilitySlotMulticlassWOTC.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\UtilitySlotMulticlassWOTC.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\OrderControl.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\UIAlert_USSM.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\UIChooseClass_USSM.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\UIFacility_USSM_AcademySlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\UISL_Multiclass.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\X2Ability_USSM.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\X2DownloadableContentInfo_UtilitySlotMulticlassWOTC.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\X2StrategyElement_USSMStaffSlots.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\XComGameStateContext_HeadquartersOrder_USSM.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\UtilitySlotMulticlassWOTC\Classes\XComGameState_HeadquartersProjectTrain_USSM.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Config" />
+    <Folder Include="Localization" />
+    <Folder Include="Src" />
+    <Folder Include="Src\UtilitySlotMulticlassWOTC" />
+    <Folder Include="Src\UtilitySlotMulticlassWOTC\Classes" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>

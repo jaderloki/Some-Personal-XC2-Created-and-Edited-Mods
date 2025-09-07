@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>2144017f-b4e8-4ba4-90ae-1bb40fa2f4a6</Guid>
+    <Name>savageItems</Name>
+    <Description>Description of My XCOM 2 Mod.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>savageItems</AssemblyName>
+    <RootNamespace>savageItems</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Config\XComAI.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComArmorUpgrades.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComClassData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComEngine.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComExtendedGrenadeTweaks.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGame.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameBoard.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameCore.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData_CharacterStats.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData_SavitemsWeaponData.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComGameData_SoldierSkills.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComInfiltration.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_InfiltrationSettings.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComLW_Overhaul.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComMissionSources.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComPGOverhaulExperimentalItems.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComRustyPCSIcons.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComSavageItemsSlots.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComSavageStockItems.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComSAVItemsCacheTechs.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComScatter.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComStrategyTuning.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComSystemInfiltration.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComTemplateEditor.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComTLM.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComWeaponSkinReplacer.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Config\XComWeaponTuning.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Perk_DefFieldOvelay.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Perk_SavGrapple.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Perk_Tranquility.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Perk_WraithOverlayBonus.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SavageItems_ModShaderCache.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SavDecoyBeacon.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SavItems_Anim.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SavItems_Art.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SavNanoWarfare.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SavScanners.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SavTeleport_ANIM.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_AltHWeps.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Sav_Ammo_Assets.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_BunkerModule2.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Sav_Charges.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Sav_CombatStims.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_CommandDesignator.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_GremlinAnimation.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\Sav_HiddenBlades.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_Hunterkillers.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_PlasmaIED.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_Plasma_RocketLauncher.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_TacScanner.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\SAV_UniqueWeapons.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Content\UILibrary_SavageItems.upk">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\SavageItems.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\TeslaLootMod.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\WOTC_TRMoreUpgrades.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\XComGame.int">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="Src\LW_Tuple\Classes\LWTuple.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\Examples.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\SavageStockItems_UIScreenListener.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\SAVStockBlackMarket.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\UIMission_SavItemsSupplyRaid.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\UIScreenListener_SAVMissionCacheRewards.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCharges_GremlinNanoRegen.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCharges_GremlinRegen.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCharges_GremlinRegen2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCharges_GremlinRepair.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCharges_GremlinStimulator.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCharges_SAVStims.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCharges_SAVStims2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityCooldown_PlayerLocalAndGlobal.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2AbilityMultiTarget_PlasmaIEDRadius.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_ExplosiveCharges.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_HunterKillers.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_SavageCompositeAModAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_SavageStockItemAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_SavageStockItemAmmoAbilitySet.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_SAVDefaultAbilitySetExtended.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_SavHWepsAbilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Ability_SavItemAbilities_Core.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Action_DecoyBeaconVFX.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Action_NanoCloneTarget.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Action_NanoCloneVFX.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Character_SavageItemsCharacters.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Condition_SAVMapPropertyPlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Condition_SavWeaponCategory.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Condition_SmartRoundsTargetAutopsy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2DownloadableContentInfo_SavageItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_AModDefField.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_ApplyRepairKitHeal.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_ApplyRepairKitSHLD.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_BunkerModExplosiveResist.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_BunkerModPersonalShieldVFX.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_BunkerModuleDummyEffect.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_CommandDesignatorEffects.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_DefectivePowerSupply.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_HEDamageAmp.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_HollowPoint.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_NaniteRegenDummy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_NanoCloneUnit.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_PlasmaIED.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_RegenDummy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_RegenDummy2.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_RKitRepairArmor.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SAVRedHaze.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SavRevealUnit.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SavScanPing.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SavStimmedEffect.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SavTranquility.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SavUplink.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SavWillLoss.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SpawnBunkerModule.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SpawnDecoyBeacon.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SpawnImprovisedCover.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_SpawnNanoCloneUnit.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_TacScanDebuff.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_TacScanFriendlyEffect.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Effect_TranquilityRegenDummy.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2EventListener_PCSIcons_Fix_SAVItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2EventListener_SavageStockItemWillEvents.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageChargeGrenades.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageCompositeAModItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageGrenades.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageStockAmmo.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageStockHeavyWeapons.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageStockMisc.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageStockUtility.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageStockWeapons.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavageUniqueWeapons.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavItemsDamageTypes.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2Item_SavItemsSchematics.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StatusEffects_SAVItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_AModMedicalSlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_ArmorModSlot.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_SavageItemsCacheTechs.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_SavageItemsMissionTechs.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_SavageItemsRewards.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_SavageItemsTechs.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_SAVItemsCovertActions.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_SAVItemsMissionSources.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2StrategyElement_SAVItemsPointsOfInterest.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\X2TemplateHelper_SavageItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XGLocalizedData_SavItems.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBAbility.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBAbilityTrigger_EventListener.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_AbilityCost.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_AbilityHitResult.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_AbilityName.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_AbilityProperty.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_Concealed.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_CoverType.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_Dead.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_HeightAdvantage.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_MatchingWeapon.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_ReactionFire.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_SourceAbilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBCondition_WeaponName.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffectUtilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_AbilityCostRefund.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_AddAbility.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_AddAbilityCharges.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_AddItemCharges.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_AddUtilityItem.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_BonusDamageByDamageType.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_BonusRadius.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_ChangeHitResultForAttacker.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_ConditionalBonus.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_ConditionalStatChange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_DoNotConsumeAllPoints.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_Extended.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_GrantReserveActionPoint.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_PermanentStatChange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_RevealUnit.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBEffect_ToHitModifierByRange.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBTemplateUtilities.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBValue.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBValue_Distance.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBValue_UnitValue.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\SavageItems\Classes\XMBValue_Visibility.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityCost_ActionPoints.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityMultiTarget_Radius.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityTag.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBAbilityToHitCalc_StandardAim.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBConfig.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBDownloadableContentInfo_XModBase.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_2_0_1\Classes\XMBTargetingMethod_Grenade.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Interfaces\Classes\XMBEffectInterface.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Interfaces\Classes\XMBOverrideInterface.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content" />
+    <Folder Include="Localization" />
+    <Folder Include="Config" />
+    <Folder Include="Src" />
+    <Folder Include="Src\LW_Tuple" />
+    <Folder Include="Src\LW_Tuple\Classes" />
+    <Folder Include="Src\SavageItems\Classes" />
+    <Folder Include="Src\XModBase_Core_2_0_1\Classes" />
+    <Folder Include="Src\XModBase_Interfaces" />
+    <Folder Include="Src\XModBase_Core_2_0_1" />
+    <Folder Include="Src\SavageItems" />
+    <Folder Include="Src\XModBase_Interfaces\Classes" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>
