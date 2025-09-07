@@ -2,7 +2,7 @@ class X2DownloadableContentInfo_WOTC_FastForwardMyGame extends X2DownloadableCon
 
 static event OnLoadedSavedGame()
 {
-	
+	//ligar();
 }
 
 static event InstallNewCampaign(XComGameState StartState)
@@ -16,17 +16,25 @@ static event OnPostTemplatesCreated()
 
 static event OnPreMission(XComGameState NewGameState, XComGameState_MissionSite MissionState)
 {
-	ligar();
+	//ligar();
 }
 
 static event OnLoadedSavedGameToStrategy()
 {
-	ligar();
+	//ligar();
 }
 
 static event OnPostMission()
 {
-	ligar();
+	//ligar();
+}
+
+/// <summary>
+/// Called after the player exits the post-mission sequence while this DLC / Mod is installed.
+/// </summary>
+static event OnExitPostMissionSequence()
+{
+	//ligar();
 }
 
 static simulated function ligar(){
@@ -35,29 +43,31 @@ static simulated function ligar(){
 	`LOG("LIGAR coisaDoida INICIO");
 	if(`PRESBASE != none){
 		gaficos = ePCTab_Graphics;
-		//`PRESBASE.Init();
+
 		if(`PRESBASE.IsPCOptionsRaised() != true){
+			`PRESBASE.Init();
 			`PRESBASE.InitUIScreens();
 			`PRESBASE.UIPCOptions(true);
 		}
-		//`PRESBASE.UIRedScreen();
+		`PRESBASE.UIRedScreen();
 		//`PRESBASE.PlayUISound(eSUISound_MenuSelect);
 		`PRESBASE.m_kPCOptions.SetSelectedTab(`PRESBASE.m_kPCOptions.m_iCurrentTab + 1, true);
 
 		`PRESBASE.m_kPCOptions.bGraphicsAutoDetectInProgress = true;
-		`PRESBASE.m_kPCOptions.Hide();
-		`PRESBASE.m_kPCOptions.NavHelp.Hide();
+		//`PRESBASE.m_kPCOptions.Hide();
+		//`PRESBASE.m_kPCOptions.NavHelp.Hide();
 		`XENGINE.RunGPUAutoDetect(true, ligarPOST);
-	}
-}
-
-static simulated function ligarPOST(){
-	if(`PRESBASE != none){
 		`PRESBASE.m_kPCOptions.GPUAutoDetectFinished();
 		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.ExitScreen();
 		`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
+	}
+}
+
+static simulated function ligarPOST(){
+	if(`PRESBASE != none){
+		
 	}
 	`LOG("LIGAR coisaDoida FIM - CHAMAR PARA FINALIZAR");
 }
@@ -109,12 +119,12 @@ static simulated function desligar(){
 		gaficosOptinus_ScreenSpaceReflections            = ePCGraphics_ScreenSpaceReflections;
 		gaficosOptinus_MaxDrawDistance                   = ePCGraphics_MaxDrawDistance;
 
-		//`PRESBASE.Init();
 		if(`PRESBASE.IsPCOptionsRaised() != true){
+			`PRESBASE.Init();
 			`PRESBASE.InitUIScreens();
 			`PRESBASE.UIPCOptions(true);
 		}
-		//`PRESBASE.UIRedScreen();
+		`PRESBASE.UIRedScreen();
 		//`PRESBASE.PlayUISound(eSUISound_MenuSelect);
 		`PRESBASE.m_kPCOptions.SetSelectedTab(`PRESBASE.m_kPCOptions.m_iCurrentTab + 1, true);
 		//`PRESBASE.m_kPCOptions.SetPresetState();
@@ -152,13 +162,7 @@ static simulated function desligar(){
 		`PRESBASE.m_kPCOptions.GraphicsVals[gaficosOptinus_ScreenSpaceReflections] = `PRESBASE.m_kPCOptions.DetermineIndexFromSetting(gaficosOptinus_ScreenSpaceReflections, `PRESBASE.m_kPCOptions.GetCurrentScreenSpaceReflectionsSetting());
 		`PRESBASE.m_kPCOptions.GraphicsVals[gaficosOptinus_MaxDrawDistance] = `PRESBASE.m_kPCOptions.DetermineIndexFromSetting(gaficosOptinus_MaxDrawDistance, `PRESBASE.m_kPCOptions.GetCurrentMaxDrawDistanceSetting());
 
-		`PRESBASE.m_kPCOptions.ApplyPresetState(true);
-		`PRESBASE.m_kPCOptions.SetPresetState();
-		`PRESBASE.m_kPCOptions.m_bAnyValueChanged = true;
-		`PRESBASE.m_kPCOptions.Show();
-		`PRESBASE.m_kPCOptions.NavHelp.Show();
-
-		`LOG("DESLIGAR coisaDoida FIM - CHAMAR PARA FINALIZAR");
+		`PRESBASE.m_kPCOptions.GPUAutoDetectFinished();
 		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.ExitScreen();
