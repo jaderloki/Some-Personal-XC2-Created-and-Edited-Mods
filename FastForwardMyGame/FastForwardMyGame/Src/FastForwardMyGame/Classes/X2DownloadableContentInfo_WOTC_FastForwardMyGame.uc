@@ -44,8 +44,8 @@ static simulated function ligar(){
 	if(`PRESBASE != none){
 		gaficos = ePCTab_Graphics;
 
-		//`PRESBASE.Init();
 		if(`PRESBASE.IsPCOptionsRaised() != true){
+			`PRESBASE.Init();
 			`PRESBASE.InitUIScreens();
 			`PRESBASE.UIPCOptions(true);
 		}
@@ -58,10 +58,10 @@ static simulated function ligar(){
 		//`PRESBASE.m_kPCOptions.NavHelp.Hide();
 		`XENGINE.RunGPUAutoDetect(true, ligarPOST);
 		`PRESBASE.m_kPCOptions.GPUAutoDetectFinished();
-		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
-		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
-		`PRESBASE.m_kPCOptions.ExitScreen();
-		`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
+		//`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
+		`PRESBASE.m_kPCOptions.SaveAndExitFinal();
+		//`PRESBASE.m_kPCOptions.ExitScreen();
+		//`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
 	}
 }
 
@@ -119,8 +119,8 @@ static simulated function desligar(){
 		gaficosOptinus_ScreenSpaceReflections            = ePCGraphics_ScreenSpaceReflections;
 		gaficosOptinus_MaxDrawDistance                   = ePCGraphics_MaxDrawDistance;
 
-		//`PRESBASE.Init();
 		if(`PRESBASE.IsPCOptionsRaised() != true){
+			`PRESBASE.Init();
 			`PRESBASE.InitUIScreens();
 			`PRESBASE.UIPCOptions(true);
 		}
@@ -163,10 +163,10 @@ static simulated function desligar(){
 		`PRESBASE.m_kPCOptions.GraphicsVals[gaficosOptinus_MaxDrawDistance] = `PRESBASE.m_kPCOptions.DetermineIndexFromSetting(gaficosOptinus_MaxDrawDistance, `PRESBASE.m_kPCOptions.GetCurrentMaxDrawDistanceSetting());
 
 		`PRESBASE.m_kPCOptions.GPUAutoDetectFinished();
-		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
-		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
-		`PRESBASE.m_kPCOptions.ExitScreen();
-		`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
+		//`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
+		`PRESBASE.m_kPCOptions.SaveAndExitFinal();
+		//`PRESBASE.m_kPCOptions.ExitScreen();
+		//`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
 	}
 }
 
