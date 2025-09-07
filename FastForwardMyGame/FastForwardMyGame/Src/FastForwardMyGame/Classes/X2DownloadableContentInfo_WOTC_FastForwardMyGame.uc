@@ -16,16 +16,17 @@ static event OnPostTemplatesCreated()
 
 static event OnPreMission(XComGameState NewGameState, XComGameState_MissionSite MissionState)
 {
-	
+	ligar();
 }
 
 static event OnLoadedSavedGameToStrategy()
 {
+	ligar();
 }
 
 static event OnPostMission()
 {
-	
+	ligar();
 }
 
 static simulated function ligar(){
@@ -41,7 +42,7 @@ static simulated function ligar(){
 		}
 		//`PRESBASE.UIRedScreen();
 		//`PRESBASE.PlayUISound(eSUISound_MenuSelect);
-		`PRESBASE.m_kPCOptions.SetSelectedTab(3, true);
+		`PRESBASE.m_kPCOptions.SetSelectedTab(`PRESBASE.m_kPCOptions.m_iCurrentTab + 1, true);
 
 		`PRESBASE.m_kPCOptions.bGraphicsAutoDetectInProgress = true;
 		`PRESBASE.m_kPCOptions.Hide();
@@ -56,6 +57,7 @@ static simulated function ligarPOST(){
 		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.ExitScreen();
+		`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
 	}
 	`LOG("LIGAR coisaDoida FIM - CHAMAR PARA FINALIZAR");
 }
@@ -114,7 +116,7 @@ static simulated function desligar(){
 		}
 		//`PRESBASE.UIRedScreen();
 		//`PRESBASE.PlayUISound(eSUISound_MenuSelect);
-		`PRESBASE.m_kPCOptions.SetSelectedTab(3, true);
+		`PRESBASE.m_kPCOptions.SetSelectedTab(`PRESBASE.m_kPCOptions.m_iCurrentTab + 1, true);
 		//`PRESBASE.m_kPCOptions.SetPresetState();
 		`PRESBASE.m_kPCOptions.SetShadowSysSetting(gaficosSetingus);
 		`PRESBASE.m_kPCOptions.SetShadowQualitySysSetting(gaficosSetingus);
@@ -160,18 +162,19 @@ static simulated function desligar(){
 		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.ExitScreen();
+		`PRESBASE.m_kPCOptions.Movie.Stack.Pop(`PRESBASE.m_kPCOptions);
 	}
 }
 
-exec function jaderLigar(){
+exec simulated function jaderLigar(){
 	ligar();
 }
 
-exec function jaderDesligar(){
+exec simulated function jaderDesligar(){
 	desligar();
 }
 
-exec function buceta(){
+exec simulated function buceta(){
 	if(`PRESBASE != none){
 		`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
 		`PRESBASE.m_kPCOptions.SaveAndExit(`PRESBASE.m_kPCOptions.SaveAndExitButton);
