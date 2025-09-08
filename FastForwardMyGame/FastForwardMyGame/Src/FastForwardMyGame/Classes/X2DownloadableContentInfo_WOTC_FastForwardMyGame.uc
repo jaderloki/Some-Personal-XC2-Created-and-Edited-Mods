@@ -63,11 +63,8 @@ static function ligar(){
 
 static function ligarPOST(){
 	`PRESBASE.m_kPCOptions.GPUAutoDetectFinished();
-	`PRESBASE.m_kPCOptions.Navigator.SetSelected(`PRESBASE.m_kPCOptions.SaveAndExitButton);
-	`PRESBASE.m_kPCOptions.SaveAndExitFinal();
-	`PRESBASE.m_kPCOptions.ExitScreen();
-	`PRESBASE.ScreenStack.Pop(`PRESBASE.m_kPCOptions, false);
 	`PRESBASE.m_kPCOptions.SaveAndExitButton.Click();
+	`PRESBASE.ScreenStack.Pop(`PRESBASE.m_kPCOptions, false);
 	`LOG("LIGAR coisaDoida FIM - CHAMAR PARA FINALIZAR");
 }
 
