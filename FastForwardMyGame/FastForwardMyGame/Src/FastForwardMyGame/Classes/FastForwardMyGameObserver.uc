@@ -41,7 +41,9 @@ simulated function bool RawInputHandler(Name Key, int ActionMask, bool bCtrl, bo
 
 		return true;
 	}else if(Key == default.HotkeyAtivar){
-		
+		if(`PRESBASE.IsPCOptionsRaised() != true){
+			`PRESBASE.UIPCOptions();
+		}
 		return true;
 	}
 	return false;
