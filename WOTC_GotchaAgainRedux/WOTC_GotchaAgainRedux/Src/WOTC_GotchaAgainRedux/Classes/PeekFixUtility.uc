@@ -36,6 +36,8 @@ static function MakeConcealmentMarkers(XComPathingPawn PathingPawn, out array<TT
 	local float graceTilesTMP, HighestTargetCoverPoint;
 	local ECoverType TargetCover, LowestTargetCover;
 
+	ConcealmentMarkers.Length = 0;
+
 	UnitFlagManager = UIUnitFlagManager_GA(`PRES.m_kUnitFlagManager);
 	History = `XCOMHISTORY;
 	WorldData = `XWORLD;
