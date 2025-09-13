@@ -9,7 +9,7 @@ class UISL_PeekTacticalHUD extends UIScreenListener;
 
 `include(WOTC_GotchaAgainRedux\Src\ModConfigMenuAPI\MCM_API_CfgHelpers.uci)
 
-var int numRevealedSteps, numSteps; 
+var int numRevealedSteps, numSteps;
 
 // <> TODO : use GetCoverTypeForTarget to examine the path and ignore blocked concealment tiles for the path warning.
 
@@ -60,12 +60,6 @@ private function AttachCallbacksToPlayers()
 	local XComGameStateHistory History;
     local XComGameState_Player PlayerState;
     local Object ThisObj;
-	local int numGraceTilesFORCED;
-	if (Len(class'PeekFixUtility'.default.static_NumGraceTiles) == 0){
-		numGraceTilesFORCED = 0;
-	}else{
-		numGraceTilesFORCED = class'PeekFixUtility'.default.static_NumGraceTiles; // converte string para int
-	}
 
     History = `XCOMHISTORY;
     EventMgr = `XEVENTMGR;
@@ -73,8 +67,8 @@ private function AttachCallbacksToPlayers()
 
 	// if allowing exposure during a move, hook into the player visibility check to avoid a bug which would cause the player to become exposed prematurely.
 	// if in strict mode, we don't have to do this, which avoids some compatibility issues.
-	`LOG("static_NumGraceTiles  " $ numGraceTilesFORCED );
-	if (numGraceTilesFORCED > 0){
+	if (`GETMCMVAR(NumGraceTiles) > 0)
+	{
 		foreach History.IterateByClassType(class'XComGameState_Player', PlayerState)
 		{
 			// remove vanilla callbacks
@@ -121,12 +115,6 @@ private function EventListenerReturn OnObjectVisibilityChanged(Object EventData,
 	local X2GameRulesetVisibilityManager VisibilityMgr;
     local XComGameState_Player PlayerState, UpdatedPlayerState;
 	local XComGameState NewGameState;
-	local int numGraceTilesFORCED;
-	if (Len(class'PeekFixUtility'.default.static_NumGraceTiles) == 0){
-		numGraceTilesFORCED = 0;
-	}else{
-		numGraceTilesFORCED = class'PeekFixUtility'.default.static_NumGraceTiles; // converte string para int
-	}
 
 	VisibilityMgr = `TACTICALRULES.VisibilityMgr;
 
@@ -175,10 +163,8 @@ private function EventListenerReturn OnObjectVisibilityChanged(Object EventData,
 				{
 					if (VisibilityInfo.DefaultTargetDist <= Square(SeenUnit.GetConcealmentDetectionDistance(SourceUnit)))
 					{
-						if(numGraceTilesFORCED > 0){
-							`LOG("static_NumGraceTiles numSteps BING BREAkDANCE");
-							SeenUnit.BreakConcealment(SourceUnit, VisibilityInfo.TargetCover == CT_None);
-						}
+						//`LOG("Breaking concealment for player visibility check!");
+						SeenUnit.BreakConcealment(SourceUnit, VisibilityInfo.TargetCover == CT_None);
 					}
 				}
 			}
@@ -217,22 +203,11 @@ function EventListenerReturn OnUnitEnteredTile(Object EventData, Object EventSou
 
 	local bool DoesUnitBreaksConcealmentIgnoringDistance, RetainConcealment, bRevealedByMovement;
 	local float ConcealmentDetectionDistance;
-
-	local int numGraceTilesFORCED;
-	if (Len(class'PeekFixUtility'.default.static_NumGraceTiles) == 0){
-		numGraceTilesFORCED = 0;
-	}else{
-		numGraceTilesFORCED = class'PeekFixUtility'.default.static_NumGraceTiles; // converte string para int
-	}
 	
 	WorldData = `XWORLD;
 	History = `XCOMHISTORY;
 
 	ThisUnitState = XComGameState_Unit(EventData);
-
-	if(numGraceTilesFORCED == 0){
-		return ELR_NoInterrupt;
-	}
 
 	// don't activate from Gremlins etc
 	if (ThisUnitState.GetMyTemplate().bIsCosmetic) { return ELR_NoInterrupt; }
@@ -264,14 +239,8 @@ function EventListenerReturn OnUnitEnteredTile(Object EventData, Object EventSou
 		// concealment for this unit is broken when stepping into a new tile if the act of stepping into the new tile caused environmental damage (ex. "broken glass")
 		// if this occurred, then the GameState will contain either an environmental damage state or an InteractiveObject state
 		// unless you're in challenge mode, then breaking stuff doesn't break concealment, because why would it?
-		`LOG("static_NumGraceTiles numSteps N_1  " $ numGraceTilesFORCED );
-		if(
-			ThisUnitState.IsConcealed() && 
-			SourceAbilityContext.ResultContext.bPathCausesDestruction && 
-			(History.GetSingleGameStateObjectForClass( class'XComGameState_ChallengeData', true ) == none) &&
-			numGraceTilesFORCED > 0
-		){
-			`LOG("static_NumGraceTiles numSteps N_1 BREAkDANCE");
+		if( ThisUnitState.IsConcealed() && SourceAbilityContext.ResultContext.bPathCausesDestruction && (History.GetSingleGameStateObjectForClass( class'XComGameState_ChallengeData', true ) == none))
+		{
 			ThisUnitState.BreakConcealment();
 		}
 
@@ -312,12 +281,9 @@ function EventListenerReturn OnUnitEnteredTile(Object EventData, Object EventSou
 
 					if (VSizeSq(TestPosition - CurrentPosition) <= Square(InteractiveObjectState.DetectionRange))
 					{
-						if(numGraceTilesFORCED > 0){
-							`LOG("static_NumGraceTiles numSteps WHGAT BREAkDANCE");
-							ThisUnitState.BreakConcealment();
-							ThisUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ThisUnitState.ObjectID));
-							break;
-						}
+						ThisUnitState.BreakConcealment();
+						ThisUnitState = XComGameState_Unit(History.GetGameStateForObjectID(ThisUnitState.ObjectID));
+						break;
 					}
 				}
 			}
@@ -348,14 +314,8 @@ function EventListenerReturn OnUnitEnteredTile(Object EventData, Object EventSou
 					ConcealmentDetectionDistance = OtherUnitState.GetConcealmentDetectionDistance(ThisUnitState);
 				}
 
-				if( 
-					(
-						DoesUnitBreaksConcealmentIgnoringDistance || 
-						VisibilityInfoFromThisUnit.DefaultTargetDist <= Square(ConcealmentDetectionDistance) 
-					) &&
-					numGraceTilesFORCED > 0
-				){
-					`LOG("static_NumGraceTiles numSteps AUDREY BREAkDANCE");
+				if( DoesUnitBreaksConcealmentIgnoringDistance || VisibilityInfoFromThisUnit.DefaultTargetDist <= Square(ConcealmentDetectionDistance) )
+				{
 					OtherUnitState.BreakConcealment(ThisUnitState, true);
 
 					// have to refresh the unit state after broken concealment
@@ -375,11 +335,7 @@ function EventListenerReturn OnUnitEnteredTile(Object EventData, Object EventSou
 			if( VisibilityInfoFromOtherUnit.bVisibleBasic )
 			{
 				// check if this unit is concealed and that concealment is broken by entering into an enemy's detection tile
-				if(
-					ThisUnitState.IsConcealed() &&
-					ThisUnitState.UnitBreaksConcealment(OtherUnitState) &&
-					class'PeekConcealmentRules'.static.IsVisible(ThisUnitState, OtherUnitState, VisibilityInfoFromOtherUnit)
-				)
+				if( ThisUnitState.IsConcealed() && ThisUnitState.UnitBreaksConcealment(OtherUnitState) && class'PeekConcealmentRules'.static.IsVisible(ThisUnitState, OtherUnitState, VisibilityInfoFromOtherUnit) )
 				{
 					DoesUnitBreaksConcealmentIgnoringDistance = OtherUnitState.DoesUnitBreaksConcealmentIgnoringDistance();
 
@@ -394,11 +350,8 @@ function EventListenerReturn OnUnitEnteredTile(Object EventData, Object EventSou
 						
 						// break concealment if visible too long.  Also if starting from a concealment-breaking tile (numSteps == 0)
 						bRevealedByMovement = true;
-						`LOG("static_NumGraceTiles numSteps  " $ numGraceTilesFORCED );
-						//if (numSteps == 0 || numRevealedSteps >= numGraceTilesFORCED)
-						if (numGraceTilesFORCED > 0)
+						if (numSteps == 0 || numRevealedSteps >= `GETMCMVAR(NumGraceTiles))
 						{
-							`LOG("static_NumGraceTiles numSteps MEME BREAkDANCE");
 							//`LOG("Breaking concealment after step " @ String(numRevealedSteps) @ " with grace tiles = " @ String(`GETMCMVAR(NumGraceTiles)) );
 							ThisUnitState.BreakConcealment(OtherUnitState);
 
@@ -409,11 +362,7 @@ function EventListenerReturn OnUnitEnteredTile(Object EventData, Object EventSou
 				}
 
 				// generate alert data for other units that see this unit
-				if(
-					numGraceTilesFORCED > 0 &&
-					VisibilityInfoFromOtherUnit.bVisibleBasic &&
-					!ThisUnitState.IsConcealed()
-				)
+				if( VisibilityInfoFromOtherUnit.bVisibleBasic && !ThisUnitState.IsConcealed() )
 				{
 					//  don't register an alert if this unit is about to reflex
 					AIGroupState = OtherUnitState.GetGroupMembership();
@@ -447,12 +396,6 @@ function EventListenerReturn OnUnitMoveFinished(Object EventData, Object EventSo
 	local XComGameStateHistory History;
 	local X2GameRulesetVisibilityManager VisibilityMgr;
 	local GameRulesCache_VisibilityInfo VisibilityInfoFromOtherUnit;
-	local int numGraceTilesFORCED;
-	if (Len(class'PeekFixUtility'.default.static_NumGraceTiles) == 0){
-		numGraceTilesFORCED = 0;
-	}else{
-		numGraceTilesFORCED = class'PeekFixUtility'.default.static_NumGraceTiles; // converte string para int
-	}
 
 	VisibilityMgr = `TACTICALRULES.VisibilityMgr;
 	
@@ -491,13 +434,8 @@ function EventListenerReturn OnUnitMoveFinished(Object EventData, Object EventSo
 		if( VisibilityInfoFromOtherUnit.bVisibleBasic )
 		{
 			// check if this unit is concealed and that concealment is broken by entering into an enemy's detection tile
-			`LOG("static_NumGraceTiles numSteps N_2  " $ numGraceTilesFORCED );
-			if(
-				ThisUnitState.IsConcealed() && 
-				ThisUnitState.UnitBreaksConcealment(OtherUnitState) && 
-				class'PeekConcealmentRules'.static.IsVisible(ThisUnitState, OtherUnitState, VisibilityInfoFromOtherUnit) &&
-				numGraceTilesFORCED > 0
-			){
+			if( ThisUnitState.IsConcealed() && ThisUnitState.UnitBreaksConcealment(OtherUnitState) && class'PeekConcealmentRules'.static.IsVisible(ThisUnitState, OtherUnitState, VisibilityInfoFromOtherUnit) )
+			{
 				//`LOG("Revealed by self-motion in final state: cover = " @ String(VisibilityInfoFromOtherUnit.TargetCover));
 				ThisUnitState.BreakConcealment(OtherUnitState);
 

@@ -21,7 +21,6 @@ static function bool IsVisible(XComGameState_Unit ThisUnitState, XComGameState_U
 	//CHECK MASTER TOGGLE, BAIL IF PFC IS DISABLED, IF IT IS DISABLED WE SHOULD NEVER GET HERE, BUT JUST IN CASE ...
 	if (!`GETMCMVAR(DisablePFC))
 	{
-		/*
 		// not visible when in high cover relative to the viewer unit
 		if (`GETMCMVAR(HideInHighCover) && VisibilityInfoFromOtherUnit.TargetCover == CT_Standing)
 		{
@@ -33,12 +32,6 @@ static function bool IsVisible(XComGameState_Unit ThisUnitState, XComGameState_U
 		{
 			return false; 
 		}
-
-		if (VisibilityInfoFromOtherUnit.TargetCover == CT_MidLevel)
-		{
-			return false; 
-		}
-		*/
 	}
 
 	// need to be within detection range.

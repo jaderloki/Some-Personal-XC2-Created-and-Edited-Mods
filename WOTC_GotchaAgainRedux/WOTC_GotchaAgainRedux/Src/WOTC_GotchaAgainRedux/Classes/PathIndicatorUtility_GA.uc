@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //	GOTCHA AGAIN REDUX BY RUSTYDIOS AND OTHERS
 //  CREATED SOMETIME BEFORE 04/09/17
-//  LAST UPDATED    16/10/23    01:45
+//  LAST UPDATED    27/04/25	13:00
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //The Within specifier designates that instances of this class can only be created within an instance of the ClassName class
@@ -25,6 +25,7 @@ var private bool QualifiedForAudioWarningLastUpdate, QualifiedForAudioWarningThi
 
 var private int PathIndicatorLocationIndex;
 var private array<PathIndicatorLocation_GA> PathIndicatorLocations;
+//var private array<TTile> AdditionalTriggerTiles; Not needed yet
 
 // Keep an array of these and clear the unit-indicators after processing the movement path to avoid flicker from turning them off and on again!
 var private array<int> UnitObjectIDsToClear;
@@ -66,6 +67,8 @@ public function ProcessPathIndicators(XComPathingPawn _PathingPawn)
 
     PathIndicatorLocationIndex = INDEX_NONE;
 
+    //AdditionalTriggerTiles.Length = 0; // Not Needed yet
+
 	// Iridar: obsessive none checking.
 	if (Outer.ControlledUnit == none) { return; }
 
@@ -86,10 +89,10 @@ public function ProcessPathIndicators(XComPathingPawn _PathingPawn)
     PrepareWaypointMarkers();
 
     // Prepare trigger markers. MUST happen after the default indicators are prepared since otherwise we don't know when we're loosing concealment
-    //if(`GETMCMVAR(bShowOverwatchTriggers) || `GETMCMVAR(bShowActivationTriggers) )
-    //{
-        PrepareTriggerIndicators(PathingPawn.PathTiles, true, true, LoosingConcealAtIndex);
-    //}
+    if(`GETMCMVAR(bShowOverwatchTriggers) || `GETMCMVAR(bShowActivationTriggers) )
+    {
+        PrepareTriggerIndicators(PathingPawn.PathTiles, `GETMCMVAR(bShowOverwatchTriggers), `GETMCMVAR(bShowActivationTriggers), LoosingConcealAtIndex);
+    }
 
     // Prepare custom markers
     if(`GETMCMVAR(bShowSmokeIndicator) )            { PrepareSmokeIndicator(PathingPawn.PathTiles);         }
@@ -283,9 +286,14 @@ private function PrepareTriggerIndicators(const out array<TTile> PathTiles, bool
     local UIUnitActivationIndicator_GA ActivationIndi;
     local EActivationIcon OwActivationType;
 
+	local LOSValues UnitLOSValues;
+
+	// These are no longer needed with the updated Revert Overwatch last tile check.
 	local Vector SourceVector, TargetVector;
 	local float TargetCoverAngle;
+
     local int i, StartIndex;
+    //local TTile DiagTile1, DiagTile2;
 
     World = `XWORLD;
 
@@ -307,7 +315,7 @@ private function PrepareTriggerIndicators(const out array<TTile> PathTiles, bool
     // Only do our custom indicators if we're not concealed, or we're breaking concealment on this path ... since they're not relevant otherwise
     if(!Outer.ControlledUnit.IsConcealed() || BrokeConcealAtIndex != INDEX_NONE)
     {
-        RevealedEnemies = CacheUtility.GetRevealedEnemiesOfUnit(Outer.ControlledUnit, true);
+        RevealedEnemies = CacheUtility.GetRevealedEnemiesOfUnit(Outer.ControlledUnit, `GETMCMVAR(bAlwaysShowPodActivation));
 
         // We can skip the first tile [0] since overwatches only trigger when moving through a tile
         //  and the first tile [0] we're only exiting and activations would have already happened for this tile if they were going to.
@@ -321,7 +329,56 @@ private function PrepareTriggerIndicators(const out array<TTile> PathTiles, bool
             bRevertIsActive = class'X2DownloadableContentInfo_WOTC_GotchaAgainRedux'.static.IsModLoaded('WOTCRevertOverwatchRules');
             bRevertAlreadyChecked = true;
         }
-        if (bRevertIsActive) { StartIndex++; }
+        if (bRevertIsActive && PathTiles.Length >= 2 && !AreTilesDiagonal(PathTiles[0], PathTiles[1]))
+        {
+            StartIndex++;
+        }
+		/*
+        else if(AreTilesDiagonal(PathTiles[0], PathTiles[1]) && !bRevertIsActive) // Revert not active + diagonal first move.
+        {
+            //TODO: handle diagonal first tile here - even needed? - Apparently not
+
+			
+            // Set up the First diagonal tile;
+            DiagTile1.X = PathTiles[0].X;
+            DiagTile1.Y = PathTiles[1].Y;
+            DiagTile1.Z = PathTiles[0].Z; // Diagonal tiles must share same Z.
+
+            // Take the opposite for the other Diagonal tile.
+            DiagTile2.X = PathTiles[1].X;
+            DiagTile2.Y = PathTiles[0].Y;
+            DiagTile2.Z = PathTiles[0].Z;
+
+            // Invert this check and put logic inside instead of using Continue;
+            if(!Outer.ControlledUnit.IsConcealed() ||  BrokeConcealAtIndex == 0)
+            {
+                // Use new helpers to add triggers for these arrays if needed.
+                if(World.IsGroundTile(DiagTile1))
+                    CheckAndAddTriggersForTile( DiagTile1,
+                                            RevealedEnemies,
+                                            Shooters,
+                                            Viewers,
+                                            TriggeredOverwatches,
+                                            TriggeredActivations,
+                                            DoOverwatchIndicators,
+                                            DoActivationIndicators
+                                            );
+
+                if(World.IsGroundTile(DiagTile2))
+                    CheckAndAddTriggersForTile( DiagTile2,
+                                            RevealedEnemies,
+                                            Shooters,
+                                            Viewers,
+                                            TriggeredOverwatches,
+                                            TriggeredActivations,
+                                            DoOverwatchIndicators,
+                                            DoActivationIndicators
+                                            );
+
+            } 
+
+			
+        } */ // CLOSE DIAGONAL TILE ELSE
 
         //START CHECKING TILES
         for(i = StartIndex; i < PathTiles.Length; i++)
@@ -346,8 +403,11 @@ private function PrepareTriggerIndicators(const out array<TTile> PathTiles, bool
                         SourceVector = World.GetPositionFromTileCoordinates(EnemyUnit.TileLocation);
                         TargetVector = World.GetPositionFromTileCoordinates(PathTiles[i]);
 
+						UnitLOSValues = LOSUtility.GetLOSValues(EnemyUnit.TileLocation, PathTiles[i-1], EnemyUnit, Outer.ControlledUnit, LOSUtility.GetUnitSightRange(EnemyUnit), , !EnemyUnit.CanTakeCover());
+
                         // TargetCoverAngle is a required out parameter! It is never used...
-                        if( World.GetCoverTypeForTarget(SourceVector, TargetVector, TargetCoverAngle) == CT_Standing)
+                        if( World.GetCoverTypeForTarget(SourceVector, TargetVector, TargetCoverAngle) == CT_Standing
+                            || !UnitLOSValues.bClearLOS && !UnitLOSValues.bWithinRegularRange)
                         {
                             continue;
                         }
@@ -393,12 +453,11 @@ private function PrepareTriggerIndicators(const out array<TTile> PathTiles, bool
                 {
                     AIGroup = EnemyUnit.GetGroupMembership();
                     
-                    if(
-						EnemyUnit.IsUnrevealedAI()
+                    if(EnemyUnit.IsUnrevealedAI()
                        && !EnemyUnit.IsMindControlled() // For some reason mind controlled XCom units return true for IsUnrevealedAI(), so we check that it is not mindcontrolled as well
                        && !EnemyUnit.IsUnitAffectedByEffectName('SireZombieLink') // Raised PsiZombies also return true for IsUnrevealedAI(), but they are always activated, so ignore these too
-                       && TriggeredActivations.Find(AIGroup) == INDEX_NONE
-					){
+                       && TriggeredActivations.Find(AIGroup) == INDEX_NONE)
+                    {
                         // Add these to an intermediate array before adding to TriggeredActivations, so we find all units from the pod activating on current tile
                         if(CurrentTileActivations.Find(AIGroup) == INDEX_NONE)
                         {
@@ -422,6 +481,49 @@ private function PrepareTriggerIndicators(const out array<TTile> PathTiles, bool
                     TriggeredActivations.AddItem(AIGroup);
                 }
             }
+
+            // New diagonal tile check here. ensure we don't go out of bounds trying to check the last tile.
+            // This is positioned to check the diagonal tiles before advancing to the next tile in the provided path.
+			/*
+            if(i < PathTiles.Length - 1)
+            {
+                if(AreTilesDiagonal(PathTiles[i], PathTiles[i+1]))
+                {
+
+                    // Set up the First diagonal tile;
+                    DiagTile1.X = PathTiles[i].X;
+                    DiagTile1.Y = PathTiles[i+1].Y;
+                    DiagTile1.Z = PathTiles[i].Z; // Diagonal tiles must share same Z.
+
+                    // Take the opposite for the other Diagonal tile.
+                    DiagTile2.X = PathTiles[i+1].X;
+                    DiagTile2.Y = PathTiles[i].Y;
+                    DiagTile2.Z = PathTiles[i].Z;
+
+                    if(World.IsGroundTile(DiagTile1))
+                        CheckAndAddTriggersForTile( DiagTile1,
+                                            RevealedEnemies,
+                                            Shooters,
+                                            Viewers,
+                                            TriggeredOverwatches,
+                                            TriggeredActivations,
+                                            DoOverwatchIndicators,
+                                            DoActivationIndicators
+                                            );
+
+                    if(World.IsGroundTile(DiagTile2))
+                        CheckAndAddTriggersForTile( DiagTile2,
+                                            RevealedEnemies,
+                                            Shooters,
+                                            Viewers,
+                                            TriggeredOverwatches,
+                                            TriggeredActivations,
+                                            DoOverwatchIndicators,
+                                            DoActivationIndicators
+                                            );
+                }
+            } // CLOSE DIAG TILES CHECK
+			*/
 
         } //CLOSE PATHING TILES FOR LOOP
 
@@ -1151,5 +1253,115 @@ private function GetShootersAndViewersForTile(const out TTile Tile, const out ar
         }
 
         class'Helpers'.static.OutputMsg("Tile Summary" @ TilePositionXYZ @ "Shooters [" @ Shooters.Length @ "] Viewers [" @ Viewers.Length @ "]");
+    }
+}
+
+// This helper determines if two tiles are diagonal from each other
+final function bool AreTilesDiagonal(TTile Tile1, TTile Tile2)
+{
+    if(     Tile1.X != Tile2.X
+        &&  Tile1.Y != Tile2.Y
+        &&  Tile1.Z == Tile2.Z
+        &&  abs(Tile2.X - Tile1.X) == 1
+        &&  abs(Tile2.Y - Tile1.Y) == 1)
+    {
+        return true;
+    }
+    return false;
+}
+
+// Modularized code for marking the diagonal tile triggers.  THIS HARDCODES a tileIndex of -1 so should only be used for OW/Suppression/Activation.
+// Apparently this isn't actually needed because the game does path the "correct" way to avoid activations on subtiles.
+final function CheckAndAddTriggersForTile(const out TTile Tile, const out array<XComGameState_Unit> RevealedEnemies,
+            out array<XComGameState_Unit> Shooters, out array<XComGameState_Unit> Viewers,
+            out array<XComGameState_Unit> TriggeredOverwatches, out array<XComGameState_AIGroup> TriggeredActivations,
+            bool DoOverwatchIndicators, bool DoActivationIndicators
+            )
+{
+    local XComGameState_AIGroup AIGroup;
+    local XComGameState_Unit EnemyUnit;
+
+    local array<XComGameState_AIGroup> CurrentTileActivations;
+
+    local UIUnitActivationIndicator_GA ActivationIndi;
+    //local EActivationIcon OwActivationType;
+
+    GetShootersAndViewersForTile(Tile, RevealedEnemies, Shooters, Viewers);
+
+	/* // Disable Overwatch/Suppression AOE checks for the diagonal tiles.
+     // OVERWATCH AND SUPPRESSION - ONLY IF THERE ARE ACTIVE SHOOTERS
+    if(DoOverwatchIndicators && Shooters.length > 0) //i < PathTiles.Length -1) //WOTC RULES CHANGE: OVERWATCHES CAN TRIGGER ON LAST TILE
+    {
+        foreach Shooters(EnemyUnit)
+        {
+            // Don't need to handle Revert Overwatch Rules Changes here, and diagonals can never be a final tile by definition.
+
+             // YEAY WE GET TO DO OVERWATCHES AND SUPPRESSION FINALLY
+            if(TriggeredOverwatches.Find(EnemyUnit) == INDEX_NONE)
+            {
+                TriggeredOverwatches.AddItem(EnemyUnit);
+                                
+                PathIndicatorLocationIndex = GetPathIndicator(Tile, -1, PathIndicatorLocationIndex);
+                PathIndicatorLocations[PathIndicatorLocationIndex].AddIndicatorToLocation(eTriggerOverwatch);
+                PathIndicatorLocations[PathIndicatorLocationIndex].TriggeredOverwatchObjectIDs.AddItem(EnemyUnit.ObjectID);
+                        
+                // Set indicator on enemy unit and remove it from the list of UnitFlags to have the overwatch-indicator reset
+                // If the unit is not on overwatch it must be suppressing (either single or area)
+
+                ActivationIndi = CacheUtility.GetActivationIndicatorForUnitObjectID(EnemyUnit.ObjectID);
+
+                if (EnemyUnit.ReserveActionPoints.Find('overwatch') != INDEX_NONE )
+                {
+                    OwActivationType = eOverwatchTriggered;
+                }
+                else if (EnemyUnit.ReserveActionPoints.Find('pistoloverwatch') != INDEX_NONE)
+                {
+                    OwActivationType = eOverwatchTriggered;
+                }
+                else
+                {
+                    OwActivationType = eSuppressionTriggered;
+                }
+
+                ActivationIndi.SetIcon(OwActivationType);
+                UnitObjectIDsToClear.RemoveItem(EnemyUnit.ObjectID);
+            }
+        }
+    } */
+            
+    // POD ACTIVATIONS - ONLY IF THERE ARE ACTIVE VIEWERS
+    if(DoActivationIndicators && Viewers.length > 0)
+    {
+        foreach Viewers(EnemyUnit)
+        {
+            AIGroup = EnemyUnit.GetGroupMembership();
+        
+            if(EnemyUnit.IsUnrevealedAI()
+               && !EnemyUnit.IsMindControlled() // For some reason mind controlled XCom units return true for IsUnrevealedAI(), so we check that it is not mindcontrolled as well
+               && !EnemyUnit.IsUnitAffectedByEffectName('SireZombieLink') // Raised PsiZombies also return true for IsUnrevealedAI(), but they are always activated, so ignore these too
+               && TriggeredActivations.Find(AIGroup) == INDEX_NONE)
+            {
+                // Add these to an intermediate array before adding to TriggeredActivations, so we find all units from the pod activating on current tile
+                if(CurrentTileActivations.Find(AIGroup) == INDEX_NONE)
+                {
+                   CurrentTileActivations.AddItem(AIGroup); 
+                }
+
+                PathIndicatorLocationIndex = GetPathIndicator(Tile, -1, PathIndicatorLocationIndex);
+                PathIndicatorLocations[PathIndicatorLocationIndex].AddIndicatorToLocation(eTriggerActivation);
+                PathIndicatorLocations[PathIndicatorLocationIndex].TriggeredActivationObjectIDs.AddItem(EnemyUnit.ObjectID);
+
+                // Set indicator on enemy unit and remove it from the list of UnitFlags to have the overwatch-indicator reset
+                ActivationIndi = CacheUtility.GetActivationIndicatorForUnitObjectID(EnemyUnit.ObjectID);
+                ActivationIndi.SetIcon(ePodActivated);
+                UnitObjectIDsToClear.RemoveItem(EnemyUnit.ObjectID);
+            }
+        }
+
+         // Now add the activated pods to the check-array so we don't indicate any enemies from it as activating on a later tile
+        foreach CurrentTileActivations(AIGroup)
+        {
+            TriggeredActivations.AddItem(AIGroup);
+        }
     }
 }

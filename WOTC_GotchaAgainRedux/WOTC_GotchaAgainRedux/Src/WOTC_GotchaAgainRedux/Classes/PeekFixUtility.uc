@@ -8,7 +8,7 @@
 //THIS IS PEEK FROM CONCEALMENTS RULE CHANGES
 class PeekFixUtility extends Object config(WOTCGotchaAgainReduxDefaults);
 
-var config int static_NumGraceTiles;
+var int static_NumGraceTiles;
 
 `include(WOTC_GotchaAgainRedux\Src\ModConfigMenuAPI\MCM_API_CfgHelpers.uci)
 

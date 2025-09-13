@@ -134,7 +134,7 @@ public function string GetIconFromIconSet(EIconSetIdentifier IconSetIdentifier, 
         case eAlreadyHacked:        return GetIconSet(IconSetIdentifier).AlreadyHackedIcon;
 
         default:
-            `log("Gotcha Again: Error! Requested icon for unsupported EIndicatorValue");
+            //`log("Gotcha Again: Error! Requested icon for unsupported EIndicatorValue");
 			break;
     }
 }
@@ -155,7 +155,7 @@ private function string GetIconFromUnitIconSet(EIndicatorValue IndicatorValue)
         case eLoneWolfActive:       return IconSetUnits.LoneWolfActiveIcon;
 
         default:
-            `log("Gotcha Again: Error! Requested icon in UnitIconSet for unsupported EIndicatorValue");
+            //`log("Gotcha Again: Error! Requested icon in UnitIconSet for unsupported EIndicatorValue");
 			break;
     }
 }
@@ -173,7 +173,7 @@ public function ArrowIndicatorIconSet GetIconSet(EIconSetIdentifier IconSet)
         case eHackAdventTower:       return IconSetHackAdventTower;
 
         default:
-            `log("Gotcha Again: Error! Requested iconset for unsupported EIconSetIdentifier");
+            //`log("Gotcha Again: Error! Requested iconset for unsupported EIconSetIdentifier");
 			break;
     }
 }
@@ -186,7 +186,14 @@ public static function IconPack_GA LoadIconPack()
 {
     local IconPack_GA IconPack;
 
-    IconPack = new class'IconPack_GA_vhs2';
+    switch(`GETMCMVAR(sIconPack) )
+	{
+        //case "otherset" : IconPack = new class'IconPack_GA_packname';
+        case "vhs2":
+        default:
+            IconPack = new class'IconPack_GA_vhs2';
+            break;
+    }
     
     IconPack.Init();
     return IconPack;
