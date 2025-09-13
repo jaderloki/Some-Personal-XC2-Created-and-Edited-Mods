@@ -8,9 +8,33 @@
 //THIS IS PEEK FROM CONCEALMENTS RULE CHANGES
 class PeekFixUtility extends Object config(WOTCGotchaAgainReduxDefaults);
 
-var int static_NumGraceTiles;
+var config bool canSeeHim;
 
 `include(WOTC_GotchaAgainRedux\Src\ModConfigMenuAPI\MCM_API_CfgHelpers.uci)
+
+// --- Getter e Setter estáticos ---
+
+static function bool GetNumGraceTiles()
+{
+	if(class'PeekFixUtility'.default.canSeeHim == true){
+		`LOG("GET CAN BE SEEN");
+	}else{
+		`LOG("GET CANNOT BE SEEN");
+	}
+    return class'PeekFixUtility'.default.canSeeHim;
+}
+
+static function SetNumGraceTiles(bool NewValue)
+{
+    class'PeekFixUtility'.default.canSeeHim = NewValue;
+	if(class'PeekFixUtility'.default.canSeeHim == true){
+		`LOG("SET CAN BE SEEN");
+	}else{
+		`LOG("SET CANNOT BE SEEN");
+	}
+    // Se quiser persistir no INI:
+    //class'PeekFixUtility'.static.StaticSaveConfig();
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //	INDICATORS - CONCEALMENT BREAKING
@@ -69,7 +93,7 @@ static function MakeConcealmentMarkers(XComPathingPawn PathingPawn, out array<TT
 				{
 					bVisibleAtThisTile = true;
 					ConcealmentMarkers.AddItem(Tile);
-					//class'PeekFixUtility'.default.static_NumGraceTiles = 10;
+					SetNumGraceTiles(true);
 					`LOG("GRACE EMPTY");
 					return;
 				}
@@ -86,8 +110,9 @@ static function MakeConcealmentMarkers(XComPathingPawn PathingPawn, out array<TT
 			
 			if (WorldData.CanSeeTileToTile(Tile, EnemyUnit.TileLocation, VisInfo) && VisInfo.DefaultTargetDist <= Square(SightRange))
 			{
-				ConcealmentMarkers.AddItem(Tile);
-				return;
+				//ConcealmentMarkers.AddItem(Tile);
+				//SetNumGraceTiles(true);
+				//return;
 			}
 			
 
@@ -181,13 +206,13 @@ static function MakeConcealmentMarkers(XComPathingPawn PathingPawn, out array<TT
 					ConcealmentMarkers.AddItem(PathingPawn.PathTiles[xvideos]);
 				}
 			}
-			`LOG("GRACE TEN");
-			class'PeekFixUtility'.default.static_NumGraceTiles = 10;
+			`LOG("DETECTED FFS");
+			SetNumGraceTiles(true);
 			return;
 		}
 	}
-	`LOG("GRACE ZERO");
-	class'PeekFixUtility'.default.static_NumGraceTiles = 0;
+	`LOG("NOT DETECTED");
+	SetNumGraceTiles(false);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # XCOM ModBuddy Solution File, Format Version 11.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "WOTC_GotchaAgainRedux", "WOTC_GotchaAgainRedux\WOTC_GotchaAgainRedux.x2proj", "{E748606B-F0F1-4916-8C81-8C0921DDAE90}"
+Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "WOTC_GotchaAgainRedux", "WOTC_GotchaAgainRedux\WOTC_GotchaAgainRedux.x2proj", "{22312047-728A-4B62-A05B-1DC57F4AA074}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|XCOM 2 = Default|XCOM 2
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E748606B-F0F1-4916-8C81-8C0921DDAE90}.Default|XCOM 2.ActiveCfg = Default|XCOM 2
-		{E748606B-F0F1-4916-8C81-8C0921DDAE90}.Default|XCOM 2.Build.0 = Default|XCOM 2
+		{22312047-728A-4B62-A05B-1DC57F4AA074}.Default|XCOM 2.ActiveCfg = Default|XCOM 2
+		{22312047-728A-4B62-A05B-1DC57F4AA074}.Default|XCOM 2.Build.0 = Default|XCOM 2
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

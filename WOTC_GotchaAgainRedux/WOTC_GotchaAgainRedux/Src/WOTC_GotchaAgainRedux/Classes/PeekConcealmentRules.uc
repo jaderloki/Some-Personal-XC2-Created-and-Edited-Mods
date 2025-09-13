@@ -17,25 +17,29 @@ class PeekConcealmentRules extends Object;
 static function bool IsVisible(XComGameState_Unit ThisUnitState, XComGameState_Unit OtherUnitState, GameRulesCache_VisibilityInfo VisibilityInfoFromOtherUnit)
 {
 	local float ConcealmentDetectionDistance;
+	
+	if(class'PeekFixUtility'.static.GetNumGraceTiles() == false){
+		return false;
+	}else{
+		//CHECK MASTER TOGGLE, BAIL IF PFC IS DISABLED, IF IT IS DISABLED WE SHOULD NEVER GET HERE, BUT JUST IN CASE ...
+		if (!`GETMCMVAR(DisablePFC))
+		{
+			// not visible when in high cover relative to the viewer unit
+			if (`GETMCMVAR(HideInHighCover) && VisibilityInfoFromOtherUnit.TargetCover == CT_Standing)
+			{
+				return false; 
+			}
+			
+			// not visible when in any cover + height advantage to the other unit
+			if (`GETMCMVAR(HideWithHeightAdvantage) && ThisUnitState.HasHeightAdvantageOver(OtherUnitState, false) && VisibilityInfoFromOtherUnit.TargetCover != CT_None)
+			{
+				return false; 
+			}
+		}
 
-	//CHECK MASTER TOGGLE, BAIL IF PFC IS DISABLED, IF IT IS DISABLED WE SHOULD NEVER GET HERE, BUT JUST IN CASE ...
-	if (!`GETMCMVAR(DisablePFC))
-	{
-		// not visible when in high cover relative to the viewer unit
-		if (`GETMCMVAR(HideInHighCover) && VisibilityInfoFromOtherUnit.TargetCover == CT_Standing)
-		{
-			return false; 
-		}
-		
-		// not visible when in any cover + height advantage to the other unit
-		if (`GETMCMVAR(HideWithHeightAdvantage) && ThisUnitState.HasHeightAdvantageOver(OtherUnitState, false) && VisibilityInfoFromOtherUnit.TargetCover != CT_None)
-		{
-			return false; 
-		}
+		// need to be within detection range.
+		ConcealmentDetectionDistance = ThisUnitState.GetConcealmentDetectionDistance(OtherUnitState);
+
+		return VisibilityInfoFromOtherUnit.DefaultTargetDist <= Square(ConcealmentDetectionDistance);
 	}
-
-	// need to be within detection range.
-	ConcealmentDetectionDistance = ThisUnitState.GetConcealmentDetectionDistance(OtherUnitState);
-
-	return VisibilityInfoFromOtherUnit.DefaultTargetDist <= Square(ConcealmentDetectionDistance);
 }
